@@ -1,0 +1,217 @@
+/* Personalización de Bootstrap con la nueva paleta de colores */
+
+/* Sobrescribir variables de Bootstrap */
+:root {
+  --bs-primary: #00ADB5;
+  --bs-primary-rgb: 0, 173, 181;
+  --bs-secondary: #393E46;
+  --bs-secondary-rgb: 57, 62, 70;
+  --bs-success: #00ADB5;
+  --bs-success-rgb: 0, 173, 181;
+  --bs-info: #00ADB5;
+  --bs-info-rgb: 0, 173, 181;
+  --bs-warning: #ffc107;
+  --bs-warning-rgb: 255, 193, 7;
+  --bs-danger: #dc3545;
+  --bs-danger-rgb: 220, 53, 69;
+  --bs-light: #EEEEEE;
+  --bs-light-rgb: 238, 238, 238;
+  --bs-dark: #222831;
+  --bs-dark-rgb: 34, 40, 49;
+  
+  --bs-body-bg: #EEEEEE;
+  --bs-body-color: #222831;
+  --bs-border-color: #393E46;
+}
+
+/* Botones personalizados */
+.btn-primary {
+  background-color: var(--primary-teal);
+  border-color: var(--primary-teal);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-teal-soft);
+  border-color: var(--primary-teal-soft);
+  color: white;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 173, 181, 0.25);
+}
+
+.btn-secondary {
+  background-color: var(--primary-gray);
+  border-color: var(--primary-gray);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-gray-soft);
+  border-color: var(--primary-gray-soft);
+  color: white;
+}
+
+.btn-outline-primary {
+  color: var(--primary-teal);
+  border-color: var(--primary-teal);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-teal);
+  border-color: var(--primary-teal);
+  color: white;
+}
+
+/* Navbar personalizada */
+.navbar-dark {
+  background-color: var(--primary-dark) !important;
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-nav .nav-link {
+  color: var(--primary-light) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--primary-teal) !important;
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: var(--primary-gray);
+}
+
+/* Cards personalizadas */
+.card {
+  border-color: var(--primary-gray);
+  background-color: white;
+}
+
+.card-header {
+  background-color: var(--primary-light);
+  border-bottom-color: var(--primary-gray);
+  color: var(--primary-dark);
+}
+
+/* Formularios */
+.form-control {
+  border-color: var(--primary-gray);
+}
+
+.form-control:focus {
+  border-color: var(--primary-teal);
+  box-shadow: 0 0 0 0.2rem rgba(0, 173, 181, 0.25);
+}
+
+/* Badges */
+.badge.bg-primary {
+  background-color: var(--primary-teal) !important;
+}
+
+.badge.bg-secondary {
+  background-color: var(--primary-gray) !important;
+}
+
+/* Alertas */
+.alert-primary {
+  background-color: rgba(0, 173, 181, 0.1);
+  border-color: var(--primary-teal);
+  color: var(--primary-dark);
+}
+
+.alert-secondary {
+  background-color: rgba(57, 62, 70, 0.1);
+  border-color: var(--primary-gray);
+  color: var(--primary-dark);
+}
+
+/* Texto personalizado */
+.text-primary {
+  color: var(--primary-teal) !important;
+}
+
+.text-secondary {
+  color: var(--primary-gray) !important;
+}
+
+.text-dark {
+  color: var(--primary-dark) !important;
+}
+
+.text-light {
+  color: var(--primary-light) !important;
+}
+
+/* Backgrounds personalizados */
+.bg-primary {
+  background-color: var(--primary-teal) !important;
+}
+
+.bg-secondary {
+  background-color: var(--primary-gray) !important;
+}
+
+.bg-dark {
+  background-color: var(--primary-dark) !important;
+}
+
+.bg-light {
+  background-color: var(--primary-light) !important;
+}
+
+/* Bordes personalizados */
+.border-primary {
+  border-color: var(--primary-teal) !important;
+}
+
+.border-secondary {
+  border-color: var(--primary-gray) !important;
+}
+
+/* Spinner personalizado */
+.spinner-border-primary {
+  color: var(--primary-teal);
+}
+
+/* Dropdown personalizado */
+.dropdown-menu {
+  border-color: var(--primary-gray);
+}
+
+.dropdown-item:hover {
+  background-color: rgba(0, 173, 181, 0.1);
+  color: var(--primary-dark);
+}
+
+/* Paginación personalizada */
+.page-link {
+  color: var(--primary-teal);
+  border-color: var(--primary-gray);
+}
+
+.page-link:hover {
+  color: white;
+  background-color: var(--primary-teal);
+  border-color: var(--primary-teal);
+}
+
+.page-item.active .page-link {
+  background-color: var(--primary-teal);
+  border-color: var(--primary-teal);
+}
+
+/* Progress bar personalizada */
+.progress-bar {
+  background-color: var(--primary-teal);
+}
+
+/* Modal personalizado */
+.modal-header {
+  border-bottom-color: var(--primary-gray);
+}
+
+.modal-footer {
+  border-top-color: var(--primary-gray);
+}
