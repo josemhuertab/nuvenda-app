@@ -162,6 +162,37 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal de Registro (dentro del template) -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="registerModalLabel">Crear cuenta</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="handleRegister">
+              <div class="mb-3">
+                <label class="form-label" for="registerName">Nombre</label>
+                <input id="registerName" v-model="registerForm.name" type="text" class="form-control" placeholder="Tu nombre" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="registerEmail">Correo electrónico</label>
+                <input id="registerEmail" v-model="registerForm.email" type="email" class="form-control" placeholder="correo@ejemplo.com" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="registerPassword">Contraseña</label>
+                <input id="registerPassword" v-model="registerForm.password" type="password" class="form-control" placeholder="Mínimo 6 caracteres" required />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="fa-solid fa-user-plus me-2"></i> Crear cuenta
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -494,33 +525,4 @@ export default {
 }
 </style>
 
-<!-- Modal de Registro -->
-<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="registerModalLabel">Crear cuenta</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form @submit.prevent="handleRegister">
-          <div class="mb-3">
-            <label class="form-label" for="registerName">Nombre</label>
-            <input id="registerName" v-model="registerForm.name" type="text" class="form-control" placeholder="Tu nombre" required />
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="registerEmail">Correo electrónico</label>
-            <input id="registerEmail" v-model="registerForm.email" type="email" class="form-control" placeholder="correo@ejemplo.com" required />
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="registerPassword">Contraseña</label>
-            <input id="registerPassword" v-model="registerForm.password" type="password" class="form-control" placeholder="Mínimo 6 caracteres" required />
-          </div>
-          <button type="submit" class="btn btn-primary w-100">
-            <i class="fa-solid fa-user-plus me-2"></i> Crear cuenta
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- Modal de Registro MOVED INTO TEMPLATE -->

@@ -81,45 +81,44 @@
         </div>
         
         <!-- Login required message -->
--        <div v-else class="text-center py-5">
-+        <div v-else class="text-center py-5">
-           <i class="fa-solid fa-lock fa-3x text-muted mb-3"></i>
-           <h4 class="text-muted">Inicia sesión para ver los productos</h4>
-           <p class="text-muted mb-4">
-             Necesitas estar autenticado para acceder a nuestro catálogo de productos
-           </p>
-           <router-link to="/login" class="btn btn-primary btn-lg">
-             <i class="fa-solid fa-right-to-bracket"></i>
-             Iniciar sesión ahora
-           </router-link>
-+          <!-- Carrusel de productos visibles para no autenticados -->
-+          <div id="publicProductsCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
-+            <div class="carousel-inner">
-+              <div v-for="(chunk, idx) in productChunks" :key="idx" :class="['carousel-item', { active: idx === 0 }]">
-+                <div class="row g-3 justify-content-center">
-+                  <div v-for="product in chunk" :key="product.id" class="col-10 col-sm-6 col-md-4 col-lg-3">
-+                    <div class="card h-100 shadow-sm">
-+                      <img :src="product.image" :alt="product.name" class="card-img-top" style="height: 180px; object-fit: cover;" />
-+                      <div class="card-body">
-+                        <h6 class="card-title mb-2">{{ product.name }}</h6>
-+                        <p class="card-text text-muted">${{ product.price.toFixed(2) }}</p>
-+                        <span class="badge bg-secondary">Stock: {{ product.stock }}</span>
-+                      </div>
-+                    </div>
-+                  </div>
-+                </div>
-+              </div>
-+            </div>
-+            <button class="carousel-control-prev" type="button" data-bs-target="#publicProductsCarousel" data-bs-slide="prev">
-+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-+              <span class="visually-hidden">Anterior</span>
-+            </button>
-+            <button class="carousel-control-next" type="button" data-bs-target="#publicProductsCarousel" data-bs-slide="next">
-+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-+              <span class="visually-hidden">Siguiente</span>
-+            </button>
-+          </div>
-         </div>
+        <div v-else class="text-center py-5">
+          <i class="fa-solid fa-lock fa-3x text-muted mb-3"></i>
+          <h4 class="text-muted">Inicia sesión para ver los productos</h4>
+          <p class="text-muted mb-4">
+            Necesitas estar autenticado para acceder a nuestro catálogo de productos
+          </p>
+          <router-link to="/login" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Iniciar sesión ahora
+          </router-link>
+          <!-- Carrusel de productos visibles para no autenticados -->
+          <div id="publicProductsCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div v-for="(chunk, idx) in productChunks" :key="idx" :class="['carousel-item', { active: idx === 0 }]">
+                <div class="row g-3 justify-content-center">
+                  <div v-for="product in chunk" :key="product.id" class="col-10 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card h-100 shadow-sm">
+                      <img :src="product.image" :alt="product.name" class="card-img-top" style="height: 180px; object-fit: cover;" />
+                      <div class="card-body">
+                        <h6 class="card-title mb-2">{{ product.name }}</h6>
+                        <p class="card-text text-muted">${{ product.price.toFixed(2) }}</p>
+                        <span class="badge bg-secondary">Stock: {{ product.stock }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#publicProductsCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#publicProductsCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -179,7 +178,7 @@
 import Products from '../components/Products.vue'
 import CartDetail from '../components/CartDetail.vue'
 import { Auth } from '../services/auth.js'
-+import { API } from '../services/api.js'
+import { API } from '../services/api.js'
 
 export default {
   name: 'Home',
@@ -191,8 +190,8 @@ export default {
   data() {
     return {
       currentUser: null,
-+      publicProducts: [],
-+      productChunks: []
+      publicProducts: [],
+      productChunks: []
     }
   },
   computed: {
@@ -208,34 +207,33 @@ export default {
   },
   mounted() {
     this.checkAuthStatus()
-+    this.loadPublicProducts()
+    this.loadPublicProducts()
   },
   methods: {
     checkAuthStatus() {
       this.currentUser = Auth.getCurrentUser()
     },
-+    async loadPublicProducts() {
-+      try {
-+        const products = await API.all()
-+        this.publicProducts = products
-+        this.productChunks = this.chunkArray(products, 4)
-+      } catch (e) {
-+        console.error('Error cargando productos públicos', e)
-+      }
-+    },
-+    chunkArray(arr, size) {
-+      const chunks = []
-+      for (let i = 0; i < arr.length; i += size) {
-+        chunks.push(arr.slice(i, i + size))
-+      }
-+      return chunks
-+    },
+    async loadPublicProducts() {
+      try {
+        const products = await API.all()
+        this.publicProducts = products
+        this.productChunks = this.chunkArray(products, 4)
+      } catch (e) {
+        console.error('Error cargando productos públicos', e)
+      }
+    },
+    chunkArray(arr, size) {
+      const chunks = []
+      for (let i = 0; i < arr.length; i += size) {
+        chunks.push(arr.slice(i, i + size))
+      }
+      return chunks
+    },
     addToCart(product) {
       const cartItems = this.cartItems()
       const existingItem = cartItems.find(item => item.id === product.id)
       
       if (existingItem) {
-        // Si el producto ya existe, aumentar la cantidad
         const newQuantity = existingItem.quantity + product.quantity
         if (newQuantity <= product.stock) {
           existingItem.quantity = newQuantity
@@ -244,10 +242,9 @@ export default {
           return
         }
       } else {
-        // Si es un producto nuevo, agregarlo al carrito
         cartItems.push({
           ...product,
-          cartId: Date.now() + Math.random() // ID único para el carrito
+          cartId: Date.now() + Math.random()
         })
       }
       
@@ -277,7 +274,7 @@ export default {
     },
     handleUserLogout() {
       this.currentUser = null
-      this.clearCart() // Limpiar carrito al cerrar sesión
+      this.clearCart()
       this.closeCart()
     },
     showNotification(message, type = 'info') {
@@ -430,5 +427,3 @@ export default {
   }
 }
 </style>
-
-<!-- Actualizar los iconos dinámicos dentro del método showNotification -->

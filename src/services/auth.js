@@ -27,7 +27,7 @@ export class Auth {
         resolve({ success: true, user: { id: newUser.id, name, email } })
       }, 600)
     })
-  },
+  }
 
   static async login(credentials) {
     // Primero intenta con usuarios registrados
