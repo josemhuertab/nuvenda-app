@@ -1,6 +1,4 @@
-/* Personalización de Bootstrap con la nueva paleta de colores */
-
-/* Sobrescribir variables de Bootstrap */
+/* Puedo personalizar Bootstrap según la paleta del cliente */
 :root {
   --bs-primary: #00ADB5;
   --bs-primary-rgb: 0, 173, 181;
@@ -24,7 +22,6 @@
   --bs-border-color: #393E46;
 }
 
-/* Botones personalizados */
 .btn-primary {
   background-color: var(--primary-teal);
   border-color: var(--primary-teal);
@@ -65,7 +62,6 @@
   color: white;
 }
 
-/* Navbar personalizada */
 .navbar-dark {
   background-color: var(--primary-dark) !important;
 }
@@ -83,7 +79,6 @@
   border-color: var(--primary-gray);
 }
 
-/* Cards personalizadas */
 .card {
   border-color: var(--primary-gray);
   background-color: white;
@@ -95,7 +90,6 @@
   color: var(--primary-dark);
 }
 
-/* Formularios */
 .form-control {
   border-color: var(--primary-gray);
 }
@@ -105,7 +99,6 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 173, 181, 0.25);
 }
 
-/* Badges */
 .badge.bg-primary {
   background-color: var(--primary-teal) !important;
 }
@@ -114,7 +107,6 @@
   background-color: var(--primary-gray) !important;
 }
 
-/* Alertas */
 .alert-primary {
   background-color: rgba(0, 173, 181, 0.1);
   border-color: var(--primary-teal);
@@ -127,7 +119,6 @@
   color: var(--primary-dark);
 }
 
-/* Texto personalizado */
 .text-primary {
   color: var(--primary-teal) !important;
 }
@@ -144,7 +135,6 @@
   color: var(--primary-light) !important;
 }
 
-/* Backgrounds personalizados */
 .bg-primary {
   background-color: var(--primary-teal) !important;
 }
@@ -161,7 +151,6 @@
   background-color: var(--primary-light) !important;
 }
 
-/* Bordes personalizados */
 .border-primary {
   border-color: var(--primary-teal) !important;
 }
@@ -170,12 +159,10 @@
   border-color: var(--primary-gray) !important;
 }
 
-/* Spinner personalizado */
 .spinner-border-primary {
   color: var(--primary-teal);
 }
 
-/* Dropdown personalizado */
 .dropdown-menu {
   border-color: var(--primary-gray);
 }
@@ -185,7 +172,6 @@
   color: var(--primary-dark);
 }
 
-/* Paginación personalizada */
 .page-link {
   color: var(--primary-teal);
   border-color: var(--primary-gray);
@@ -202,12 +188,10 @@
   border-color: var(--primary-teal);
 }
 
-/* Progress bar personalizada */
 .progress-bar {
   background-color: var(--primary-teal);
 }
 
-/* Modal personalizado */
 .modal-header {
   border-bottom-color: var(--primary-gray);
 }

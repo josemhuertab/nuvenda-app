@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-    <!-- Navbar siempre visible -->
     <Navbar />
     
-    <!-- Contenido principal con router-view -->
     <main class="main-content">
       <div class="container-fluid px-3 py-4">
         <router-view />
       </div>
     </main>
     
-    <!-- Notificaciones globales -->
     <div 
       v-if="notification.show" 
       :class="['alert', `alert-${notification.type}`, 'notification-global']"
@@ -152,7 +149,7 @@ body {
 
 .main-content {
   flex: 1;
-  padding-top: 76px; /* Altura del navbar fijo */
+  padding-top: 76px;
 }
 
 /* Notificaciones globales */

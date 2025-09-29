@@ -1,6 +1,5 @@
 @import './base.css';
 
-/* Layout global sin bordes laterales y a pantalla completa */
 #app {
   width: 100%;
   min-height: 100vh;
@@ -9,7 +8,6 @@
   font-weight: normal;
 }
 
-/* Estilos de enlaces base */
 a,
 .green {
   text-decoration: none;
@@ -24,23 +22,7 @@ a,
   }
 }
 
-/* Eliminar restricciones de ancho y grid del layout por defecto */
-/*
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-}
-*/
-
-/* Prevenir desplazamiento horizontal en toda la app */
 html, body {
   overflow-x: hidden;
 }

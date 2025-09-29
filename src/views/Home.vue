@@ -1,6 +1,5 @@
 <template>
   <div class="home-view">
-    <!-- Hero Section -->
     <section class="hero-section bg-dark text-white py-5 mb-5 position-relative">
       <div class="hero-overlay"></div>
       <div class="container-fluid position-relative px-0">
@@ -37,7 +36,6 @@
       </div>
     </section>
 
-    <!-- Welcome message for authenticated users -->
     <div v-if="isAuthenticated" class="container-fluid px-0 mb-4">
       <div class="alert alert-success" role="alert">
         <i class="fa-solid fa-user-check"></i>
@@ -46,7 +44,6 @@
       </div>
     </div>
 
-    <!-- Login prompt for non-authenticated users -->
     <div v-else class="container-fluid px-3 mb-4">
       <div class="alert alert-info" role="alert">
         <i class="fa-solid fa-circle-info"></i>
@@ -58,7 +55,6 @@
       </div>
     </div>
 
-    <!-- Products Section -->
     <section class="products-section">
       <div class="container-fluid px-3">
         <div class="row">
@@ -75,12 +71,10 @@
           </div>
         </div>
 
-        <!-- Products Component -->
         <div v-if="isAuthenticated">
           <Products />
         </div>
         
-        <!-- Login required message -->
         <div v-else class="text-center py-5">
           <i class="fa-solid fa-lock fa-3x text-muted mb-3"></i>
           <h4 class="text-muted">Inicia sesión para ver los productos</h4>
@@ -91,7 +85,6 @@
             <i class="fa-solid fa-right-to-bracket"></i>
             Iniciar sesión ahora
           </router-link>
-          <!-- Carrusel de productos visibles para no autenticados -->
           <div id="publicProductsCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div v-for="(chunk, idx) in productChunks" :key="idx" :class="['carousel-item', { active: idx === 0 }]">
@@ -122,7 +115,6 @@
       </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features-section bg-light py-5 mt-5">
       <div class="container-fluid px-0">
         <div class="row">
@@ -162,7 +154,6 @@
       </div>
     </section>
 
-    <!-- Cart Detail Modal -->
     <CartDetail
       :is-visible="isCartVisible"
       :cart-items="currentCartItems"
@@ -399,7 +390,6 @@ export default {
   }
 }
 
-/* Animaciones */
 .hero-section {
   animation: fadeInUp 0.8s ease-out;
 }

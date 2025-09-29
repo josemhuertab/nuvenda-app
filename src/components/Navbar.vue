@@ -1,13 +1,11 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
     <div class="container-fluid px-3">
-      <!-- Brand/Logo -->
       <router-link class="navbar-brand fw-bold" to="/">
         <i class="fa-solid fa-store"></i>
         Nuvastore
       </router-link>
 
-      <!-- Mobile toggle button -->
       <button
         class="navbar-toggler"
         type="button"
@@ -20,7 +18,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Navigation items -->
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
@@ -37,9 +34,7 @@
           </li>
         </ul>
 
-        <!-- Right side navigation -->
         <ul class="navbar-nav">
-          <!-- Cart button -->
           <li class="nav-item" v-if="isAuthenticated">
             <button
               class="nav-link btn btn-link text-white position-relative"
@@ -58,7 +53,6 @@
             </button>
           </li>
 
-          <!-- Authentication section -->
           <li class="nav-item dropdown" v-if="isAuthenticated">
             <a
               class="nav-link dropdown-toggle"
@@ -87,7 +81,6 @@
             </ul>
           </li>
 
-          <!-- Login button when not authenticated -->
           <li class="nav-item" v-else>
             <router-link class="nav-link" to="/login" active-class="active">
               <i class="fa-solid fa-right-to-bracket"></i>

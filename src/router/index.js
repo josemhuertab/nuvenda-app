@@ -41,33 +41,25 @@ const router = createRouter({
   routes
 })
 
-// Guards de navegación con autenticación
 router.beforeEach((to, from, next) => {
-  // Actualizar título de la página
   if (to.meta.title) {
     document.title = to.meta.title
   }
   
   const isAuthenticated = Auth.isAuthenticated()
   
-  // Verificar si la ruta requiere autenticación
   if (to.meta.requiresAuth && !isAuthenticated) {
-    // Guardar la ruta a la que el usuario quería ir
     sessionStorage.setItem('nuvastore_redirect_after_login', to.fullPath)
     
-    // Redirigir al login
     next('/login')
     return
   }
   
-  // Verificar si la ruta es solo para invitados (no autenticados)
   if (to.meta.requiresGuest && isAuthenticated) {
-    // Si el usuario ya está autenticado, redirigir al home
     next('/')
     return
   }
   
-  // Continuar con la navegación
   next()
 })
 

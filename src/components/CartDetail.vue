@@ -1,12 +1,10 @@
 <template>
-  <!-- Modal backdrop -->
   <div
     v-if="isVisible"
     class="modal-backdrop fade show"
     @click="closeCart"
   ></div>
 
-  <!-- Cart Modal -->
   <div
     v-if="isVisible"
     class="modal fade show d-block"
@@ -17,7 +15,6 @@
   >
     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
       <div class="modal-content">
-        <!-- Modal Header -->
         <div class="modal-header bg-primary text-white">
           <h5 class="modal-title" id="cartModalLabel">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -31,9 +28,7 @@
           ></button>
         </div>
 
-        <!-- Modal Body -->
         <div class="modal-body">
-          <!-- Empty cart state -->
             <div v-if="cartItems.length === 0" class="text-center py-5">
               <i class="fa-solid fa-cart-shopping fa-3x text-muted mb-3"></i>
               <h4 class="text-muted">Tu carrito está vacío</h4>
@@ -44,9 +39,7 @@
               </button>
             </div>
 
-          <!-- Cart items -->
           <div v-else>
-            <!-- Cart summary -->
             <div class="cart-summary mb-4 p-3 bg-light rounded">
               <div class="row">
                 <div class="col-md-6">
@@ -63,7 +56,6 @@
               </div>
             </div>
 
-            <!-- Cart items list -->
             <div class="cart-items">
               <div
                 v-for="item in cartItems"
@@ -71,7 +63,6 @@
                 class="cart-item border rounded p-3 mb-3"
               >
                 <div class="row align-items-center">
-                  <!-- Product image -->
                   <div class="col-md-2 col-3">
                     <img
                       :src="item.image"
@@ -81,7 +72,6 @@
                     />
                   </div>
 
-                  <!-- Product info -->
                   <div class="col-md-4 col-9">
                     <div class="d-flex align-items-center">
                       <i class="fa-solid fa-box me-2 text-primary"></i>
@@ -95,7 +85,6 @@
                     </p>
                   </div>
 
-                  <!-- Quantity controls -->
                   <div class="col-md-3 col-6 mt-2 mt-md-0">
                     <label class="form-label small">Cantidad:</label>
                     <div class="input-group input-group-sm">
@@ -126,7 +115,6 @@
                     </div>
                   </div>
 
-                  <!-- Subtotal and remove -->
                   <div class="col-md-3 col-6 mt-2 mt-md-0 text-md-end">
                     <p class="mb-2">
                       <strong>${{ (item.price * item.quantity).toFixed(2) }}</strong>
@@ -146,7 +134,6 @@
           </div>
         </div>
 
-        <!-- Modal Footer -->
         <div v-if="cartItems.length > 0" class="modal-footer">
           <div class="w-100">
             <div class="row">
@@ -243,7 +230,6 @@ export default {
   },
   watch: {
     isVisible(newVal) {
-      // Controlar el scroll del body cuando el modal está abierto
       if (newVal) {
         document.body.style.overflow = 'hidden'
       } else {
@@ -252,7 +238,6 @@ export default {
     }
   },
   beforeUnmount() {
-    // Asegurar que el scroll se restaure al destruir el componente
     document.body.style.overflow = 'auto'
   }
 }
@@ -303,7 +288,6 @@ export default {
   }
 }
 
-/* Animaciones */
 .modal.show {
   animation: modalSlideIn 0.3s ease-out;
 }

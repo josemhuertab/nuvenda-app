@@ -2,7 +2,6 @@
   <div class="login-view">
     <div class="container-fluid h-100 px-3">
       <div class="row h-100">
-        <!-- Left side - Login Form -->
         <div class="col-lg-6 col-md-8 mx-auto d-flex align-items-center">
           <div class="login-container w-100">
             <div class="text-center mb-5">
@@ -11,11 +10,9 @@
               <p class="text-muted">Inicia sesión en tu cuenta</p>
             </div>
 
-            <!-- Login Form -->
             <div class="card shadow-lg border-0">
               <div class="card-body p-5">
                 <form @submit.prevent="handleLogin">
-                  <!-- Email Field -->
                   <div class="mb-4">
                     <label for="email" class="form-label fw-semibold">
                       <i class="fa-solid fa-envelope text-primary"></i>
@@ -36,7 +33,6 @@
                     </div>
                   </div>
 
-                  <!-- Password Field -->
                   <div class="mb-4">
                     <label for="password" class="form-label fw-semibold">
                       <i class="fa-solid fa-lock text-primary"></i>
@@ -66,7 +62,6 @@
                     </div>
                   </div>
 
-                  <!-- Remember Me -->
                   <div class="mb-4">
                     <div class="form-check">
                       <input
@@ -81,19 +76,16 @@
                     </div>
                   </div>
 
-                  <!-- Error Message -->
                   <div v-if="loginError" class="alert alert-danger" role="alert">
                     <i class="fa-solid fa-triangle-exclamation"></i>
                     {{ loginError }}
                   </div>
 
-                  <!-- Success Message -->
                   <div v-if="loginSuccess" class="alert alert-success" role="alert">
                     <i class="fa-solid fa-circle-check"></i>
                     {{ loginSuccess }}
                   </div>
 
-                  <!-- Submit Button -->
                   <button
                     type="submit"
                     class="btn btn-primary btn-lg w-100 mb-3"
@@ -106,7 +98,6 @@
                     {{ isLoading ? 'Iniciando sesión...' : 'Iniciar sesión' }}
                   </button>
 
-                  <!-- Demo Credentials -->
                   <div class="text-center">
                     <small class="text-muted">
                       <strong>Credenciales de prueba:</strong><br>
@@ -118,7 +109,6 @@
               </div>
             </div>
 
-            <!-- Additional Links -->
             <div class="text-center mt-4">
               <p class="text-muted">
                 ¿No tienes una cuenta?
@@ -134,7 +124,6 @@
           </div>
         </div>
 
-        <!-- Right side - Hero Image/Info -->
         <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center bg-primary text-white">
           <div class="hero-content text-center p-5">
             <i class="fa-solid fa-cart-shopping fa-5x mb-4 opacity-75"></i>
@@ -163,7 +152,6 @@
       </div>
     </div>
 
-    <!-- Modal de Registro (dentro del template) -->
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -223,20 +211,16 @@ export default {
     }
   },
   mounted() {
-    // Si el usuario ya está autenticado, redirigir al home
     if (Auth.isAuthenticated()) {
       this.$router.push('/')
     }
     
-    // Cargar credenciales guardadas si existen
     this.loadSavedCredentials()
   },
   methods: {
     async handleLogin() {
-      // Limpiar errores previos
       this.clearErrors()
       
-      // Validar formulario
       if (!this.validateForm()) {
         return
       }
@@ -244,32 +228,25 @@ export default {
       this.isLoading = true
       
       try {
-        // Intentar login
         const user = await Auth.login(this.credentials)
         
-        // Guardar usuario
         Auth.saveUser(user)
         
-        // Guardar credenciales si se seleccionó "recordar"
         if (this.rememberMe) {
           this.saveCredentials()
         } else {
           this.clearSavedCredentials()
         }
         
-        // Mostrar mensaje de éxito
         this.loginSuccess = `¡Bienvenido ${user.name}! Redirigiendo...`
         
-        // Emitir evento de login exitoso
         this.$root.$emit('user-login', user)
         
-        // Redirigir después de un breve delay
         setTimeout(() => {
           this.$router.push('/')
         }, 1500)
         
       } catch (error) {
-        // Mostrar error de login
         this.loginError = error.message || 'Error al iniciar sesión. Intenta nuevamente.'
         console.error('Login error:', error)
       } finally {
@@ -279,7 +256,6 @@ export default {
     async handleRegister() {
       this.registerError = ''
       this.registerSuccess = ''
-      // Validación básica
       if (!this.registerForm.name || !this.registerForm.email || !this.registerForm.password) {
         this.registerError = 'Todos los campos son obligatorios'
         return
@@ -299,9 +275,7 @@ export default {
           password: this.registerForm.password
         })
         this.registerSuccess = 'Cuenta creada con éxito. Ya puedes iniciar sesión.'
-        // Limpiar formulario
         this.registerForm = { name: '', email: '', password: '' }
-        // Cerrar modal tras breve delay
         setTimeout(() => {
           const modalEl = document.getElementById('registerModal')
           if (modalEl) {
@@ -316,7 +290,6 @@ export default {
     validateForm() {
       let isValid = true
       
-      // Validar email
       if (!this.credentials.email) {
         this.errors.email = 'El correo electrónico es requerido'
         isValid = false
@@ -325,7 +298,6 @@ export default {
         isValid = false
       }
       
-      // Validar password
       if (!this.credentials.password) {
         this.errors.password = 'La contraseña es requerida'
         isValid = false
@@ -368,7 +340,6 @@ export default {
     }
   },
   watch: {
-    // Limpiar errores cuando el usuario empiece a escribir
     'credentials.email'() {
       if (this.errors.email) {
         delete this.errors.email
@@ -470,8 +441,6 @@ export default {
     padding: 2rem !important;
   }
 }
-
-/* Animaciones */
 .login-container {
   animation: fadeInUp 0.6s ease-out;
 }
@@ -502,7 +471,6 @@ export default {
   }
 }
 
-/* Efectos hover para inputs */
 .form-control:hover {
   border-color: #007bff;
 }
@@ -512,7 +480,6 @@ export default {
   margin-bottom: 0.75rem;
 }
 
-/* Estilo para el botón de mostrar/ocultar contraseña */
 .input-group .btn-outline-secondary {
   color: #6c757d;
   border-color: #e9ecef;
@@ -524,5 +491,3 @@ export default {
   background-color: transparent;
 }
 </style>
-
-<!-- Modal de Registro MOVED INTO TEMPLATE -->

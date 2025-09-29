@@ -1,6 +1,5 @@
 <template>
   <div class="products-container">
-    <!-- Buscador y filtros de productos -->
     <div class="search-section mb-4">
       <div class="row">
         <div class="col-md-6">
@@ -32,7 +31,6 @@
         </div>
       </div>
       
-      <!-- Filtro de precio -->
       <div class="row mt-3">
         <div class="col-md-6">
           <label class="form-label">Rango de precio:</label>
@@ -72,7 +70,6 @@
       </div>
     </div>
 
-    <!-- Loading state -->
     <div v-if="loading" class="text-center py-5">
       <div class="spinner-border text-primary" role="status">
         <span class="visually-hidden">Cargando productos...</span>
@@ -80,13 +77,11 @@
       <p class="mt-2">Cargando productos...</p>
     </div>
 
-    <!-- Error state -->
     <div v-else-if="error" class="alert alert-danger" role="alert">
       <i class="fa-solid fa-triangle-exclamation"></i>
       Error al cargar los productos: {{ error }}
     </div>
 
-    <!-- No products found -->
     <div v-else-if="filteredProducts.length === 0 && !loading" class="text-center py-5">
       <i class="fa-solid fa-search fa-3x text-muted mb-3"></i>
       <h4 class="text-muted">No se encontraron productos</h4>
@@ -95,7 +90,6 @@
       </p>
     </div>
 
-    <!-- Products grid -->
     <div v-else class="row">
       <div
         v-for="product in filteredProducts"
@@ -299,7 +293,6 @@ export default {
       // Actualizar el carrito usando inject
       this.updateCart(cartItems)
       
-      // Mostrar notificación usando inject
       this.showNotification(`${product.name} agregado al carrito (${quantity} unidad${quantity > 1 ? 'es' : ''})`, 'success')
     },
     stockClass(stock) {
@@ -315,7 +308,6 @@ export default {
   },
   watch: {
     searchTerm() {
-      // Auto-filtrar mientras el usuario escribe
       this.filterProducts()
     }
   }

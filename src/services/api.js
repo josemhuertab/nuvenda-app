@@ -1,7 +1,5 @@
-// Servicio API que simula una API REST para productos
 export class API {
   static async all() {
-    // Simula una llamada asíncrona a una API
     return new Promise((resolve) => {
       setTimeout(() => {
         const products = [
@@ -87,7 +85,7 @@ export class API {
           }
         ];
         resolve(products);
-      }, 1000); // Simula 1 segundo de latencia
+      }, 1000);
     });
   }
 }
